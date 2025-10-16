@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { MONTH_LABELS } from "../types";
 import { usePlants } from "../lib/usePlants";
 import Container from "../components/Container";
@@ -10,17 +10,15 @@ export default function PlantDetails() {
   const { allPlants } = usePlants();
   const { id } = useParams();
   const plant = allPlants.find((p) => p.id === id);
-  const navigate = useNavigate();
 
   if (!plant) return <NotFound message="Plant not found." />;
 
   return (
     <Container>
       <div className="mt-3" />
-      <button onClick={() => navigate(-1)} className="text-slate-600 text-sm mb-2">← Back</button>
 
-      <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white">
-        <div className="w-full h-48 bg-slate-100">
+      <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+        <div className="w-full h-48 bg-neutral-100">
           <img
             src={plant.imageUrl || "https://placehold.co/1200x600?text=Plant"}
             alt={plant.commonName}
@@ -29,7 +27,7 @@ export default function PlantDetails() {
         </div>
         <div className="p-4">
           <h1 className="text-xl font-semibold">{plant.commonName}</h1>
-          {plant.scientificName && <div className="text-sm text-slate-500 italic">{plant.scientificName}</div>}
+          {plant.scientificName && <div className="text-sm text-neutral-600 italic">{plant.scientificName}</div>}
 
           <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
             {plant.category && <Fact label="Category" value={plant.category} />}
@@ -46,13 +44,13 @@ export default function PlantDetails() {
           {plant.notes && (
             <div className="mt-4">
               <div className="text-sm font-medium">Notes</div>
-              <p className="text-sm text-slate-700 mt-1">{plant.notes}</p>
+              <p className="text-sm text-neutral-800 mt-1">{plant.notes}</p>
             </div>
           )}
 
           <div className="mt-4">
             <div className="text-sm font-medium">Care Calendar</div>
-            <div className="text-sm text-slate-500 mt-1">(Placeholder for tasks by month)</div>
+            <div className="text-sm text-neutral-600 mt-1">(Placeholder for tasks by month)</div>
           </div>
 
           {plant.sourceUrl && (

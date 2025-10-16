@@ -35,16 +35,16 @@ export default function MonthListPage() {
       <div className="mt-4" />
       <div className="flex items-center justify-between mb-3 mt-4">
         <h2 className="text-lg font-semibold">Plants in {pair.label}</h2>
-        <span className="text-sm text-slate-500">{pair.label}</span>
+        <span className="text-sm text-neutral-600">{pair.label}</span>
       </div>
       <SearchBar value={q} onChange={setQ} />
       <div className="mt-3 grid grid-cols-1 gap-3">
         {results.length === 0 ? (
-          <Card className="p-6 text-center text-slate-500">No plants match yet.</Card>
-        ) : (
+          <Card className="p-6 text-center text-neutral-600">No plants match yet.</Card>
+          ) : (
           results.map((p) => <PlantCard key={p.id} plant={p} />)
-        )}
-      </div>
-    </Container>
-  );
+      )}
+    </div>
+</Container>
+);
 }

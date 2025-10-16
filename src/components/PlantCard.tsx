@@ -9,7 +9,7 @@ export default function PlantCard({ plant }: { plant: Plant }) {
     <Link to={`/plant/${plant.id}`} className="block">
       <Card className="overflow-hidden">
         <div className="flex gap-3 p-3">
-          <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100">
+          <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-neutral-100"> {/* [CHANGED] */}
             <img
               src={plant.imageUrl || "https://placehold.co/300x300?text=Plant"}
               alt={plant.commonName || plant.scientificName}
@@ -20,7 +20,7 @@ export default function PlantCard({ plant }: { plant: Plant }) {
           <div className="min-w-0 flex-1">
             <div className="font-medium truncate">{plant.commonName}</div>
             {plant.scientificName && (
-              <div className="text-sm text-slate-500 truncate italic">{plant.scientificName}</div>
+              <div className="text-sm text-neutral-600 truncate italic">{plant.scientificName}</div>
             )}
             <div className="mt-2 flex flex-wrap gap-1">
               {plant.sun && <Tag>{plant.sun}</Tag>}
