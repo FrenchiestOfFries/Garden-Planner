@@ -7,7 +7,7 @@ import PlantDetails from "./pages/PlantDetails";
 import AddPlant from "./pages/AddPlant";
 import NotFound from "./pages/NotFound";
 import SearchPage from "./pages/SearchPage"; // [NEW]
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 export default function App() {
   return (
