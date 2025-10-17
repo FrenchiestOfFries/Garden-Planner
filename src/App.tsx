@@ -7,6 +7,7 @@ import PlantDetails from "./pages/PlantDetails";
 import AddPlant from "./pages/AddPlant";
 import NotFound from "./pages/NotFound";
 import SearchPage from "./pages/SearchPage"; // [NEW]
+import { Analytics } from "@vercel/analytics/next"
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/search" element={<SearchPage />} /> {/* [NEW] */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Analytics />
     </div>
   );
 }
