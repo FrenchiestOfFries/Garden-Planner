@@ -4,10 +4,13 @@ import { MONTH_PAIRS } from "../types";
 import Container from "../components/Container";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
+import SearchDropdown from "../components/SearchDropdown"; // [NEW]
+import { usePlants } from "../lib/usePlants"; // [NEW]
 
 export default function Home() {
   const [q, setQ] = useState("");
   const navigate = useNavigate();
+  const { allPlants } = usePlants(); // [NEW]
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -18,17 +21,21 @@ export default function Home() {
   return (
     <Container>
       <div className="mt-4" />
-      {/* [CHANGED] Replace 'By Month' header with a full-width search bar */}
-      <form onSubmit={onSubmit} className="mb-3 mt-2">
-        <SearchBar value={q} onChange={setQ} placeholder="Search all plants..." />
-      </form>
+      <div className="relative">
+        <form onSubmit={onSubmit} className="mb-3 mt-2">
+          <SearchBar value={q} onChange={setQ} placeholder="Search all plants..." />
+        </form>
+        <SearchDropdown query={q} plants={allPlants} onItemClick={() => setQ("")} />
+      </div>
 
       <div className="grid grid-cols-2 gap-3">
         {MONTH_PAIRS.map((pair) => (
           <Link key={pair.slug} to={`/months/${pair.slug}`}>
             <Card className="p-5 active:scale-[.99]">
               <div className="text-xl font-semibold">{pair.label}</div>
-              <div className="text-xs text-neutral-600 mt-1">Tap to view plants active in these months</div> {/* [CHANGED] */}
+              <div className="text-xs text-neutral-600 mt-1">
+                Tap to view plants active in these months
+              </div>
             </Card>
           </Link>
         ))}
@@ -38,7 +45,9 @@ export default function Home() {
       <Link to="/add" className="block">
         <Card className="p-5 text-center border-dashed">
           <div className="text-base font-semibold">➕ Add a Plant</div>
-          <div className="text-xs text-neutral-700 mt-1">Create a new entry (saved locally for now)</div> {/* [CHANGED] */}
+          <div className="text-xs text-neutral-700 mt-1">
+            Create a new entry (saved locally for now)
+          </div>
         </Card>
       </Link>
     </Container>
